@@ -11,8 +11,8 @@ Vagrant.configure("2") do |config|
   end
   config.vm.hostname = "opensuse-leap-dev"
   config.vm.synced_folder ".", "/vagrant", disabled: true
-  config.vm.network "private_network", ip: "192.168.50.10", gateway: "192.168.50.1"
-  config.vm.network "public_network", bridge: "br0", use_dhcp_assigned_default_route: true
+  #config.vm.network "private_network", ip: "192.168.50.10", gateway: "192.168.50.1"
+  config.vm.network "public_network", dev: "br0", mode: "bridge", type: "bridge"
   config.vm.provision "file", source: "./id_ed25519", destination: "/tmp/id_ed25519"
   config.vm.provision "file", source: "./id_ed25519.pub", destination: "/tmp/id_ed25519.pub"
 
