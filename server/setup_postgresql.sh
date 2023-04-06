@@ -1,8 +1,13 @@
 #!/bin/bash
 
-read -p "Enter PostgreSQL username: " POSTGRES_USER
-read -p "Enter PostgreSQL password: " POSTGRES_PASS
-read -p "Enter PostgreSQL database name: " POSTGRES_DB
+# Load configuration variables from file or set defaults
+if [ -f config.conf ]; then
+    source db_config.conf
+else
+    POSTGRES_USER="lineage"
+    POSTGRES_PASS="lineage"
+    POSTGRES_DB="lineage_db"
+fi
 
 # Install PostgreSQL
 sudo zypper refresh
