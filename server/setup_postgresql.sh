@@ -4,8 +4,7 @@
 if [ -f config.conf ]; then
     source db_config.conf
 else
-    POSTGRES_USER="lineage"
-    POSTGRES_PASS="lineage"
+    POSTGRES_USER="postgres"
     POSTGRES_DB="lineage_db"
 fi
 
@@ -17,8 +16,7 @@ sudo zypper install postgresql-server
 sudo systemctl enable postgresql
 sudo systemctl start postgresql
 
-# Create a PostgreSQL user and database
-sudo su - postgres -c "psql -c \"CREATE USER $POSTGRES_USER WITH PASSWORD '$POSTGRES_PASS';\""
+# Create a PostgreSQL database
 sudo su - postgres -c "psql -c \"CREATE DATABASE $POSTGRES_DB OWNER $POSTGRES_USER;\""
 sudo su - postgres -c "psql -c \"GRANT ALL PRIVILEGES ON DATABASE $POSTGRES_DB TO $POSTGRES_USER;\""
 
