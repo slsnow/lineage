@@ -75,8 +75,8 @@ router.delete('/:id', async (req, res) => {
 
   try {
     const result = await pool.query('DELETE FROM people WHERE id = $1', [id]);
-    if (result.rowCount === 0)
-            res.status(404).json({ error: 'Person not found.' });
+    if (result.rowCount === 0) {
+      res.status(404).json({ error: 'Person not found.' });
     } else {
       res.json({ message: 'Person deleted successfully.' });
     }
@@ -86,4 +86,4 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-module.exports = router; 
+module.exports = router;
