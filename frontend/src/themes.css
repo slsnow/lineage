@@ -1,0 +1,11 @@
+:root.light {
+    /* Light theme variables */
+    --background-color: #ffffff;
+    --text-color: #000000;
+  }
+  
+  :root.dark {
+    /* Dark theme variables */
+    --background-color: #333333;
+    --text-color: #ffffff;
+  }  

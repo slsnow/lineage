@@ -4,7 +4,7 @@
 ./setup_postgresql.sh > lineage_setup.log 2>&1
 
 # Install npm packages
-npm install express pg dotenv >> lineage_setup.log 2>&1
+npm install express pg dotenv react-router-dom >> lineage_setup.log 2>&1
 
 # Start the server as a background process
 nohup node index.js >> server.log 2>&1 &
