@@ -31,7 +31,7 @@ sudo su - postgres -c "psql -c \"CREATE DATABASE $DB_NAME OWNER $DB_USER;\""
 sudo su - postgres -c "psql -c \"GRANT ALL PRIVILEGES ON DATABASE $DB_NAME TO $DB_USER;\""
 
 # Create the people table
-sudo su - postgres -c "psql -U $DB_USER -d $DB_NAME -c 'CREATE TABLE people (
+sudo su - postgres -c "PGPASSWORD=$DB_PASS psql -U $DB_USER -d $DB_NAME -c 'CREATE TABLE people (
     id SERIAL PRIMARY KEY,
     gedcom_id VARCHAR(20) UNIQUE NOT NULL,
     first_name VARCHAR(100) NOT NULL,
@@ -44,7 +44,7 @@ sudo su - postgres -c "psql -U $DB_USER -d $DB_NAME -c 'CREATE TABLE people (
 );'"
 
 # Create the events table
-sudo su - postgres -c "psql -U $DB_USER -d $DB_NAME -c 'CREATE TABLE events (
+sudo su - postgres -c "PGPASSWORD=$DB_PASS psql -U $DB_USER -d $DB_NAME -c 'CREATE TABLE events (
     id SERIAL PRIMARY KEY,
     person_id INTEGER REFERENCES people(id),
     event_type VARCHAR(20),
@@ -54,7 +54,7 @@ sudo su - postgres -c "psql -U $DB_USER -d $DB_NAME -c 'CREATE TABLE events (
 );'"
 
 # Create the relationships table
-sudo su - postgres -c "psql -U $DB_USER -d $DB_NAME -c 'CREATE TABLE relationships (
+sudo su - postgres -c "PGPASSWORD=$DB_PASS psql -U $DB_USER -d $DB_NAME -c 'CREATE TABLE relationships (
     id SERIAL PRIMARY KEY,
     person1_id INTEGER REFERENCES people(id),
     person2_id INTEGER REFERENCES people(id),
@@ -62,7 +62,7 @@ sudo su - postgres -c "psql -U $DB_USER -d $DB_NAME -c 'CREATE TABLE relationshi
 );'"
 
 # Create the sources table
-sudo su - postgres -c "psql -U $DB_USER -d $DB_NAME -c 'CREATE TABLE sources (
+sudo su - postgres -c "PGPASSWORD=$DB_PASS psql -U $DB_USER -d $DB_NAME -c 'CREATE TABLE sources (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255),
     publication_info TEXT,
@@ -72,13 +72,13 @@ sudo su - postgres -c "psql -U $DB_USER -d $DB_NAME -c 'CREATE TABLE sources (
 );'"
 
 # Create the notes table
-sudo su - postgres -c "psql -U $DB_USER -d $DB_NAME -c 'CREATE TABLE notes (
+sudo su - postgres -c "PGPASSWORD=$DB_PASS psql -U $DB_USER -d $DB_NAME -c 'CREATE TABLE notes (
     id SERIAL PRIMARY KEY,
     note_text TEXT
 );'"
 
 # Create the media table
-sudo su - postgres -c "psql -U $DB_USER -d $DB_NAME -c 'CREATE TABLE media (
+sudo su - postgres -c "PGPASSWORD=$DB_PASS psql -U $DB_USER -d $DB_NAME -c 'CREATE TABLE media (
     id SERIAL PRIMARY KEY,
     title VARCHAR(255),
     file_path VARCHAR(255),
@@ -86,4 +86,4 @@ sudo su - postgres -c "psql -U $DB_USER -d $DB_NAME -c 'CREATE TABLE media (
     type VARCHAR(50)
 );'"
 
-# Create tables to link sources, notes, and media to events., etc.
+# Create tables to link sources, notes, and media to events, etc.
