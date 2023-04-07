@@ -1,8 +1,8 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-PUBLIC_NET_DEVICE="br0"
-BRANCH = "development-setup"
+$PUBLIC_NET_DEVICE="br0"
+$BRANCH = "development-setup"
 
 Vagrant.configure("2") do |config|
   config.vm.box = "opensuse/Leap-15.4.x86_64"
