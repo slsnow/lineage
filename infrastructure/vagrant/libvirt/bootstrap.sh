@@ -9,7 +9,7 @@ systemctl enable --now postgresql.service
 mkdir -p /opt/lineage
 
 # Clone the Public Github Repo
-git clone https://github.com/slsnow/lineage.git /opt/lineage
+git clone -b "${BRANCH}" https://github.com/slsnow/lineage.git /opt/lineage
 
 # Change to the server directory and run the lineage_setup.sh script
 cd /opt/lineage/server
