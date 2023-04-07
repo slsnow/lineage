@@ -13,6 +13,10 @@ fi
 sudo zypper refresh
 sudo zypper install postgresql-server
 
+# Edit pg_hba.conf
+sudo sed -i "1i local   all             postgres                                peer" /var/lib/pgsql/data/pg_hba.conf
+sudo sed -i "1i local   all             lineage                                 md5" /var/lib/pgsql/data/pg_hba.conf
+
 # Initialize PostgreSQL
 sudo systemctl enable postgresql
 sudo systemctl start postgresql
