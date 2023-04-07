@@ -32,9 +32,6 @@ sudo -u vagrant ssh-keyscan -H github.com >> /home/vagrant/.ssh/known_hosts
 # Clone the Private Github Repo
 sudo -u vagrant git clone git@github.com:slsnow/lineage.git /opt/lineage
 
-# Change to the server directory and install dependencies
+# Change to the server directory and run the lineage_setup.sh script
 cd /opt/lineage/server
-npm install express pg
-
-# Start the server as a background process
-nohup node index.js > server.log 2>&1 &
+sudo -u vagrant ./lineage_setup.sh
