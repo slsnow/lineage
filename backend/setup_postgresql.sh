@@ -14,6 +14,10 @@ sudo zypper refresh
 sudo zypper install postgresql-server
 
 # Edit pg_hba.conf
+sudo cp /var/lib/pgsql/data/pg_hba.conf /var/lib/pgsql/data/pg_hba.conf.backup
+sudo awk '/^local[[:blank:]]/ && !x {print "local   all             postgres                                peer"; print "local   all             lineage                                 md5"; x=1} 1' /var/lib/pgsql/data/pg_hba.conf.backup | sudo tee /var/lib/pgsql/data/pg_hba.conf
+
+
 sudo sed -i "1i local   all             postgres                                peer" /var/lib/pgsql/data/pg_hba.conf
 sudo sed -i "1i local   all             lineage                                 md5" /var/lib/pgsql/data/pg_hba.conf
 
