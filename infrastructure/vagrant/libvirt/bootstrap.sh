@@ -12,6 +12,7 @@ mkdir -p /opt/lineage
 git clone -b "$1" https://github.com/slsnow/lineage.git /opt/lineage
 
 # Change to the server directory and run the lineage_setup.sh script
-cd /opt/lineage/server
+cd /opt/lineage/backend
 chmod +x lineage_setup.sh
-./lineage_setup.sh
+chmod +x setup_postgresql.sh
+sudo ./lineage_setup.sh

@@ -22,8 +22,8 @@ sudo sed -i "1i local   all             postgres                                
 sudo sed -i "1i local   all             lineage                                 md5" /var/lib/pgsql/data/pg_hba.conf
 
 # Initialize PostgreSQL
-sudo systemctl enable postgresql
-sudo systemctl start postgresql
+sudo systemctl enable --now postgresql
+sudo systemctl restart postgresql
 
 # Create a PostgreSQL user and database
 sudo su - postgres -c "psql -c \"CREATE USER $DB_USER WITH PASSWORD '$DB_PASS';\""
@@ -86,4 +86,4 @@ sudo su - postgres -c "psql -U $DB_USER -d $DB_NAME -c 'CREATE TABLE media (
     type VARCHAR(50)
 );'"
 
-# Create tables to link sources, notes, and media to events and
+# Create tables to link sources, notes, and media to events., etc.

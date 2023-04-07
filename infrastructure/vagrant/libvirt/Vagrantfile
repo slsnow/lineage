@@ -3,6 +3,7 @@
 
 $PUBLIC_NET_DEVICE="br0"
 $BRANCH = "development-setup"
+$IPADDRESS = "192.168.0.45"
 
 Vagrant.configure("2") do |config|
   config.vm.box = "opensuse/Leap-15.4.x86_64"
@@ -14,6 +15,6 @@ Vagrant.configure("2") do |config|
   end
   config.vm.hostname = "opensuse-leap-dev"
   config.vm.synced_folder ".", "/vagrant", disabled: true
-  config.vm.network "public_network", dev: $PUBLIC_NET_DEVICE, mode: "bridge", type: "bridge"
+  config.vm.network "public_network", dev: $PUBLIC_NET_DEVICE, ip: $IPADDRESS, mode: "bridge", type: "bridge"
   config.vm.provision "shell", path: "bootstrap.sh", args: [$BRANCH]
 end
