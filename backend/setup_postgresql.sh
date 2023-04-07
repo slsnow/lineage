@@ -28,7 +28,7 @@ sudo systemctl restart postgresql
 # Create a PostgreSQL user and database
 sudo su - postgres -c "psql -c \"CREATE USER $DB_USER WITH PASSWORD '$DB_PASS';\""
 sudo su - postgres -c "psql -c \"CREATE DATABASE $DB_NAME OWNER $DB_USER;\""
-sudo su - postgres -c "psql -c \"GRANT ALL PRIVILEGES ON DATABASE $DB_NAMEB TO $DB_USER;\""
+sudo su - postgres -c "psql -c \"GRANT ALL PRIVILEGES ON DATABASE $DB_NAME TO $DB_USER;\""
 
 # Create the people table
 sudo su - postgres -c "psql -U $DB_USER -d $DB_NAME -c 'CREATE TABLE people (
