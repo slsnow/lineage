@@ -3,3 +3,5 @@
 DB_USER="lineage"
 DB_PASS="lineage"
 DB_NAME="lineage"
+DB_HOST="localhost"
+DB_PORT="5432"

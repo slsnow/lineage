@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+.app-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white; /* Or use the background color you prefer */
+  z-index: 1000; /* Adjust the z-index to a value higher than the sidebar's z-index */
+  padding: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow to create some depth */
+}
+
+.app-content {
+  display: flex;
+  margin-top: 64px; /* Add a margin-top equal to the height of the toolbar */
+}
