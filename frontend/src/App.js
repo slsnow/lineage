@@ -6,18 +6,25 @@ import Overview from './pages/Overview';
 import Tree from './pages/Tree';
 import People from './pages/People';
 import Settings from './pages/Settings';
+import './App.css';
 
 function App() {
   return (
     <Router>
-      <Toolbar />
-      <Sidebar />
-      <Switch>
-        <Route path="/" exact component={Overview} />
-        <Route path="/tree" component={Tree} />
-        <Route path="/people" component={People} />
-        <Route path="/settings" component={Settings} />
-      </Switch>
+      <div className="App">
+        <div className="app-toolbar">
+          <Toolbar />
+        </div>
+        <div className="app-content">
+          <Sidebar />
+          <Switch>
+            <Route path="/" exact component={Overview} />
+            <Route path="/tree" component={Tree} />
+            <Route path="/people" component={People} />
+            <Route path="/settings" component={Settings} />
+          </Switch>
+        </div>
+      </div>
     </Router>
   );
 }

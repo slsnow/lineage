@@ -1,0 +1,56 @@
+/* Sidebar.module.css */
+.sidebar {
+    width: 250px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16px;
+  }
+  
+  .sidebarItem {
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 4px;
+  }
+  
+  .sidebarItem:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+  }
+  
+  .sidebarItem ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .collapsible {
+    display: none;
+  }
+  
+  .collapsible.show {
+    display: block;
+  }
+  
+  .indicator {
+    position: absolute;
+    right: 8px;
+    transition: transform 0.3s;
+  }
+  
+  .indicator.open {
+    transform: rotate(90deg);
+  }
+  
+  .current-page {
+    color: #0050B2; /* Change this color to match your active link color */
+  }
+
+  .sidebar {
+    width: 12.5%; /* 1/8 of the screen */
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    overflow-y: auto;
+    background-color: #f5f5f5;
+    padding: 1rem;
+  }
+  
