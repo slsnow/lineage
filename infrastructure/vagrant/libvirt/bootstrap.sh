@@ -41,7 +41,7 @@ if ! grep -q "DEPLOYMENT=\"$DEPLOYMENT\"" lineage.conf; then
 fi
 
 
-# Set Permissions and Run Lineage Setup
+# Set Permissions and Run "lineage_setup.sh"
 
 chmod +x lineage_setup.sh
 chmod +x setup_postgresql.sh
