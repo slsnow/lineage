@@ -1,11 +1,14 @@
 # Lineage Server
 
-Lineage Server is a simple web server for managing and displaying Genealogical information. This project is built using Node.js and Express, with a PostgreSQL database.
+Lineage Server is a web application being developed for managing and displaying Genealogical information.
 
 # Development Notes
+- This is very much a work in progress at this point.
 
-## Requirements
-
-- Node.js (version 12 or newer)
-- PostgreSQL (version 9.6 or newer)
-- Vagrant (for development and testing)
+## Project Goals
+  - Create a free and OpenSource Genealogy web application.
+  - Make it easy to self-host (dockerize).
+  - Multi-User Login.
+  - Modern UI, with a simple/advanced view and editing toggle.
+  - Similar Features to Family Search, Roots Magic, and other Genealogy Software.
+  - Can import/export GEDCOM files.
