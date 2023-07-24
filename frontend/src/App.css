@@ -1,57 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+section {
+  padding-left: 20px;
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  font-size: 24px;
+}
+
+/* Light theme styling */
+.App.light {
+  background: #f4f4f4;
+  color: #333;
+}
+
+/* Dark theme styling */
+.App.dark {
+  background: #2b2b2b;
+  color: #f4f4f4;
+}
+
+/* Always Dark theme styling for sidebar */
+.app.dark {
+  background: #2b2b2b;
+  color: #f4f4f4;
+}
+
+h1, h2 {
+  font-family: 'Lato', sans-serif;
+  margin: 50px auto;
+}
+
+h1 {
+  font-size: 40px;
+}
+
+.menu1 {
+  margin-bottom: 40px;
+  margin-top: 20px;
+}
+
+/* Dark mode specific styling */
+.App.dark h1,
+.App.dark h2,
+.App.dark .menu1 {
+  color: #f4f4f4;
+}
+
+/* Light mode specific styling */
+.App.light h1,
+.App.light h2,
+.App.light .menu1 {
+  color: #333;
+}
+
+/* Additional styling for better appearance */
 .App {
-  text-align: center;
+  transition: all 0.5s ease-in-out; /* smooth transition for theme switching */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+button {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  margin: 0.5rem;
+  font-family: 'Roboto', sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+button:focus {
+  outline: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+a.link {
+  color: inherit;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.app-toolbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.theme-toggle {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: white; /* Or use the background color you prefer */
-  z-index: 1000; /* Adjust the z-index to a value higher than the sidebar's z-index */
-  padding: 0.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow to create some depth */
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  color: inherit;  /* match the theme color */
+  cursor: pointer;
+  z-index: 1000;  /* ensure it's above other elements */
 }
 
-.app-content {
-  display: flex;
-  margin-top: 64px; /* Add a margin-top equal to the height of the toolbar */
+/* Light theme colors */
+.App.light .link, .App.light .app svg {
+  color: #333;
+}
+
+/* Dark theme colors */
+.App.dark .link, .App.dark .app svg {
+  color: #f4f4f4; /* change this to the desired light color */
 }
