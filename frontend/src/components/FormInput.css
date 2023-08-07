@@ -1,0 +1,19 @@
+.form-group {
+    margin-top: 10px; /* Adjust as needed */
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+  
+  .form-input {
+    border: none;
+    border-bottom: 1px solid grey;
+    padding: 5px 0;
+    font-size: 1em;
+    width: 100%;
+    margin-top: 5px; /* This adds space between the label and the input box */
+  }
+  
+  input[type="radio"] {
+    transform: scale(1.5); /* Increase or decrease this as needed */
+  }
