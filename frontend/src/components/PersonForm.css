@@ -1,0 +1,27 @@
+.names-container,
+.birth-container,
+.death-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.names-container .form-group,
+.birth-container .form-group,
+.death-container .form-group {
+  flex-basis: 45%; /* adjust as needed */
+}
+
+.sex-container .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.sex-container .radio-group {
+  display: flex;
+  gap: 10px; /* adjust as needed */
+}
+
+.status-container {
+  margin-top: 20px; /* Adjust as needed */
+}

@@ -1,0 +1,21 @@
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background: none;
+    font-size: 1.2em;
+    cursor: pointer;
+  }
+  
+  .modal-buttons {
+    /* Align buttons to the right */
+    display: flex;
+    justify-content: flex-end;
+  
+    /* Space between buttons */
+    gap: 10px;
+  
+    /* Space above the buttons */
+    margin-top: 20px;
+  }
