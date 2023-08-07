@@ -1,40 +1,37 @@
-import React from 'react';
-import Modal from 'react-modal';
-import PersonForm from './PersonForm';
-import './PersonModal.css';
+import React, { useState } from 'react';
+import FormInput from './FormInput';
+import './FormInput.css';
+import './PersonForm.css';
 
-export default function PersonModal({isOpen, onRequestClose, onSubmit}) {
+export default function PersonForm() {
+  const [status, setStatus] = useState("Living");
+
+  const handleStatusChange = (newStatus) => {
+    setStatus(newStatus);
+  }
+
   return (
-    <Modal
-      isOpen={isOpen}
-      onRequestClose={onRequestClose}
-      shouldCloseOnOverlayClick={false} // This prevents closing the modal when clicking outside
-      style={{
-        overlay: { backgroundColor: 'rgba(0, 0, 0, 0.5)' }, // Add some opacity
-        content: {
-          position: 'relative', // Allows positioning of children
-          top: '50%',
-          left: '50%',
-          right: 'auto',
-          bottom: 'auto',
-          marginRight: '-50%',
-          transform: 'translate(-50%, -50%)',
-          width: '40%', // smaller width
-          padding: '20px',
-          border: '1px solid #ccc',
-          overflow: 'auto',
-          borderRadius: '15px',
-          fontSize: '0.8em', // smaller font
-        }
-      }}
-    >
-      <button className="close-button" onClick={onRequestClose}>X</button> {/* Moved to the top right */}
-      <h2>Add Person</h2>
-      <PersonForm />
-      <div className="modal-buttons">
-        <button onClick={onRequestClose}>Cancel</button> {/* Cancel button */}
-        <button onClick={onSubmit}>Submit</button> {/* Submit button */}
+    <form className="person-form">
+      <div className="names-container">
+        <FormInput label="First Names" type="text" />
+        <FormInput label="Last Names" type="text" />
       </div>
-    </Modal>
+      <div className="sex-container">
+        <FormInput label="Sex" type="radio" options={["Male", "Female", "Unknown"]} />
+      </div>
+      <div className="status-container">
+        <FormInput label="Status" type="radio" options={["Deceased", "Living"]} onOptionChange={handleStatusChange} />
+      </div>
+      <div className="birth-container">
+        <FormInput label="Birth Date" type="date" />
+        <FormInput label="Birthplace" type="text" />
+      </div>
+      {status === "Deceased" && (
+        <div className="death-container">
+          <FormInput label="Death Date" type="date" />
+          <FormInput label="Deathplace" type="text" />
+        </div>
+      )}
+    </form>
   );
 }
