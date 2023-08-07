@@ -9,7 +9,8 @@ export default function FormInput({label, type, options, onOptionChange}) {
           <div>
             {options.map((option, index) => (
               <label key={index}>
-                <input type="radio" value={option} name={label} onChange={() => onOptionChange(option)} />
+                <input type="radio" value={option} name={label}
+                  onChange={() => onOptionChange && onOptionChange(option)} />
                 {option}
               </label>
             ))}
