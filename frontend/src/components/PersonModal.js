@@ -3,37 +3,61 @@ import Modal from 'react-modal';
 import PersonForm from './PersonForm';
 import './PersonModal.css';
 
-export default function PersonModal({isOpen, onRequestClose, onSubmit}) {
+export default function PersonModal({isOpen, onRequestClose}) {
+
+  const handleFormSubmit = async (formData) => {
+    try {
+      const response = await fetch('/api/addPerson', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        console.log("Data saved successfully:", result);
+        onRequestClose(); // Close the modal if data is saved successfully
+      } else {
+        console.error("Error saving data:", result);
+      }
+    } catch (error) {
+      console.error("Fetch error:", error);
+    }
+  };
+
   return (
     <Modal
       isOpen={isOpen}
       onRequestClose={onRequestClose}
-      shouldCloseOnOverlayClick={false} // This prevents closing the modal when clicking outside
+      shouldCloseOnOverlayClick={false} 
       style={{
-        overlay: { backgroundColor: 'rgba(0, 0, 0, 0.5)' }, // Add some opacity
+        overlay: { backgroundColor: 'rgba(0, 0, 0, 0.5)' },
         content: {
-          position: 'relative', // Allows positioning of children
+          position: 'relative', 
           top: '50%',
           left: '50%',
           right: 'auto',
           bottom: 'auto',
           marginRight: '-50%',
           transform: 'translate(-50%, -50%)',
-          width: '40%', // smaller width
+          width: '40%',
           padding: '20px',
           border: '1px solid #ccc',
           overflow: 'auto',
           borderRadius: '15px',
-          fontSize: '0.8em', // smaller font
+          fontSize: '0.8em',
         }
       }}
     >
-      <button className="close-button" onClick={onRequestClose}>X</button> {/* Moved to the top right */}
+      <button className="close-button" onClick={onRequestClose}>X</button>
       <h2>Add Person</h2>
-      <PersonForm />
+      <PersonForm onFormSubmit={handleFormSubmit} />
       <div className="modal-buttons">
-        <button onClick={onRequestClose}>Cancel</button> {/* Cancel button */}
-        <button onClick={onSubmit}>Submit</button> {/* Submit button */}
+        <button onClick={onRequestClose}>Cancel</button>
+        {/* The actual submission now happens within the PersonForm, so no need for a separate submit button here. */}
       </div>
     </Modal>
   );

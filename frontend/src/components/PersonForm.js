@@ -3,35 +3,90 @@ import FormInput from './FormInput';
 import './FormInput.css';
 import './PersonForm.css';
 
-export default function PersonForm() {
-  const [status, setStatus] = useState("Living");
+export default function PersonForm({ onFormSubmit }) {
+  const [formData, setFormData] = useState({
+    firstNames: '',
+    lastNames: '',
+    sex: 'Unknown',
+    status: 'Living',
+    birthDate: '',
+    birthplace: '',
+    deathDate: '',
+    deathplace: ''
+  });
 
-  const handleStatusChange = (newStatus) => {
-    setStatus(newStatus);
-  }
+  const handleInputChange = (name, value) => {
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onFormSubmit(formData);
+  };
 
   return (
-    <form className="person-form">
+    <form className="person-form" onSubmit={handleSubmit}>
       <div className="names-container">
-        <FormInput label="First Names" type="text" />
-        <FormInput label="Last Names" type="text" />
+        <FormInput 
+          label="First Names" 
+          type="text" 
+          onChange={(e) => handleInputChange('firstNames', e.target.value)} 
+        />
+        <FormInput 
+          label="Last Names" 
+          type="text" 
+          onChange={(e) => handleInputChange('lastNames', e.target.value)} 
+        />
       </div>
       <div className="sex-container">
-        <FormInput label="Sex" type="radio" options={["Male", "Female", "Unknown"]} />
+        <FormInput 
+          label="Sex" 
+          type="radio" 
+          options={["Male", "Female", "Unknown"]} 
+          onChange={(e) => handleInputChange('sex', e.target.value)}
+        />
       </div>
       <div className="status-container">
-        <FormInput label="Status" type="radio" options={["Deceased", "Living"]} onOptionChange={handleStatusChange} />
+        <FormInput 
+          label="Status" 
+          type="radio" 
+          options={["Deceased", "Living"]} 
+          onOptionChange={(value) => handleInputChange('status', value)} 
+          onChange={(e) => handleInputChange('status', e.target.value)}
+        />
       </div>
       <div className="birth-container">
-        <FormInput label="Birth Date" type="date" />
-        <FormInput label="Birthplace" type="text" />
+        <FormInput 
+          label="Birth Date" 
+          type="date" 
+          onChange={(e) => handleInputChange('birthDate', e.target.value)}
+        />
+        <FormInput 
+          label="Birthplace" 
+          type="text" 
+          onChange={(e) => handleInputChange('birthplace', e.target.value)}
+        />
       </div>
-      {status === "Deceased" && (
+      {formData.status === "Deceased" && (
         <div className="death-container">
-          <FormInput label="Death Date" type="date" />
-          <FormInput label="Deathplace" type="text" />
+          <FormInput 
+            label="Death Date" 
+            type="date" 
+            onChange={(e) => handleInputChange('deathDate', e.target.value)}
+          />
+          <FormInput 
+            label="Deathplace" 
+            type="text" 
+            onChange={(e) => handleInputChange('deathplace', e.target.value)}
+          />
         </div>
       )}
+      <div className="form-actions">
+        <button type="submit">Submit</button>
+      </div>
     </form>
   );
 }

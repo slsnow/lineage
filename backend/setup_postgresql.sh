@@ -13,13 +13,19 @@ fi
 sudo zypper refresh
 sudo zypper install postgresql-server
 
-# Edit pg_hba.conf
+# Backup original pg_hba.conf
 sudo cp /var/lib/pgsql/data/pg_hba.conf /var/lib/pgsql/data/pg_hba.conf.backup
-sudo awk '/^local[[:blank:]]/ && !x {print "local   all             postgres                                peer"; print "local   all             lineage                                 md5"; x=1} 1' /var/lib/pgsql/data/pg_hba.conf.backup | sudo tee /var/lib/pgsql/data/pg_hba.conf
 
+# Set default authentication methods:
+echo "local   all             lineage                                 md5" | sudo tee /var/lib/pgsql/data/pg_hba.conf
+echo "local   all             postgres                                peer" | sudo tee -a /var/lib/pgsql/data/pg_hba.conf
+echo "local   all             all                                     peer" | sudo tee -a /var/lib/pgsql/data/pg_hba.conf
+echo "host    all             all             127.0.0.1/32            md5" | sudo tee -a /var/lib/pgsql/data/pg_hba.conf
+echo "host    all             all             ::1/128                 md5" | sudo tee -a /var/lib/pgsql/data/pg_hba.conf
+echo "local   replication     all                                     peer" | sudo tee -a /var/lib/pgsql/data/pg_hba.conf
+echo "host    replication     all             127.0.0.1/32            md5" | sudo tee -a /var/lib/pgsql/data/pg_hba.conf
+echo "host    replication     all             ::1/128                 md5" | sudo tee -a /var/lib/pgsql/data/pg_hba.conf
 
-sudo sed -i "1i local   all             postgres                                peer" /var/lib/pgsql/data/pg_hba.conf
-sudo sed -i "1i local   all             lineage                                 md5" /var/lib/pgsql/data/pg_hba.conf
 
 # Initialize PostgreSQL
 sudo systemctl enable --now postgresql
@@ -39,6 +45,7 @@ sudo su - postgres -c "PGPASSWORD=$DB_PASS psql -U $DB_USER -d $DB_NAME -c 'CREA
     name_suffix VARCHAR(20),
     nickname VARCHAR(100),
     gender CHAR(1),
+    is_living BOOLEAN DEFAULT TRUE,
     father_id INTEGER REFERENCES people(id),
     mother_id INTEGER REFERENCES people(id)
 );'"

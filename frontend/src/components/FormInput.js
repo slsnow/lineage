@@ -1,7 +1,7 @@
 import React from 'react';
 import './FormInput.css';
 
-export default function FormInput({label, type, options, onOptionChange}) {
+export default function FormInput({label, type, options, onChange}) {
     if (type === 'radio' && options) {
       return (
         <div className="form-input">
@@ -9,8 +9,12 @@ export default function FormInput({label, type, options, onOptionChange}) {
           <div>
             {options.map((option, index) => (
               <label key={index}>
-                <input type="radio" value={option} name={label}
-                  onChange={() => onOptionChange && onOptionChange(option)} />
+                <input 
+                type="radio" 
+                value={option} 
+                name={label}
+                onChange={e => onChange && onChange(e.target.value)} 
+                />
                 {option}
               </label>
             ))}
@@ -19,10 +23,14 @@ export default function FormInput({label, type, options, onOptionChange}) {
       );
     }
 
-  return (
-    <div className="form-group">
-      <label>{label}</label>
-      <input className="form-input" type={type} />
-    </div>
-  );
+    return (
+      <div className="form-group">
+        <label>{label}</label>
+        <input 
+          className="form-input" 
+          type={type} 
+          onChange={e => onChange && onChange(e)}
+        />
+      </div>
+    );
 }
