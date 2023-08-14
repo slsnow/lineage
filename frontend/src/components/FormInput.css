@@ -16,4 +16,6 @@
   
   input[type="radio"] {
     transform: scale(1.5); /* Increase or decrease this as needed */
+    margin-right: 10px;
+    margin-left: 10px;
   }
