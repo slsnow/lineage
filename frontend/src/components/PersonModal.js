@@ -7,6 +7,7 @@ export default function PersonModal({isOpen, onRequestClose}) {
 
   const handleFormSubmit = async (formData) => {
     try {
+      // Use a relative URL since you've set up the proxy in your package.json
       const response = await fetch('/api/addPerson', {
         method: 'POST',
         headers: {

@@ -44,18 +44,21 @@ export default function PersonForm({ onFormSubmit }) {
       <div className="sex-container">
         <FormInput 
           label="Sex" 
+          name="sex"  // Added name attribute for radio group
           type="radio" 
           options={["Male", "Female", "Unknown"]} 
+          defaultValue={formData.sex}  // Provide current selected value
           onChange={(e) => handleInputChange('sex', e.target.value)}
         />
       </div>
       <div className="status-container">
         <FormInput 
           label="Status" 
+          name="status"  // Added name attribute for radio group
           type="radio" 
           options={["Deceased", "Living"]} 
-          onOptionChange={(value) => handleInputChange('status', value)} 
-          onChange={(e) => handleInputChange('status', e.target.value)}
+          defaultValue={formData.status}  // Provide current selected value
+          onChange={(e) => handleInputChange('status', e.target.value)} 
         />
       </div>
       <div className="birth-container">
