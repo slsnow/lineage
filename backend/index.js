@@ -20,12 +20,12 @@ app.use(express.json());
 // Sample endpoint to insert a person
 app.post('/api/addPerson', async (req, res) => {
     try {
-        const { firstNames, lastNames, sex, status, birthDate, birthplace, deathDate, deathplace } = req.body;
+        const { firstNames, lastNames, sex, status, birthDate, birthplace, deathDate, deathplace, person_id } = req.body;
 
         // Insert person into people table
         const response = await pool.query(
-            "INSERT INTO people (first_name, last_name, gender, is_living) VALUES ($1, $2, $3, $4) RETURNING id",
-            [firstNames, lastNames, sex, status === 'Living']
+            "INSERT INTO people (person_id, first_name, last_name, gender, is_living) VALUES ($1, $2, $3, $4) RETURNING id",
+            [person_id, firstNames, lastNames, sex, status === 'Living']
         );
 
         const personId = response.rows[0].id;

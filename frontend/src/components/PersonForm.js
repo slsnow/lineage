@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import FormInput from './FormInput';
 import './FormInput.css';
 import './PersonForm.css';
@@ -7,7 +8,7 @@ export default function PersonForm({ onFormSubmit }) {
   const [formData, setFormData] = useState({
     firstNames: '',
     lastNames: '',
-    sex: 'Unknown',
+    sex: 'U',
     status: 'Living',
     birthDate: '',
     birthplace: '',
@@ -22,9 +23,28 @@ export default function PersonForm({ onFormSubmit }) {
     }));
   };
 
+  const handleSexChange = (value) => {
+    let charValue = 'U'; // Default
+    if (value === 'Male') {
+        charValue = 'M';
+    } else if (value === 'Female') {
+        charValue = 'F';
+    } else if (value === 'Unknown') {
+        charValue = 'U';
+    }
+    handleInputChange('sex', charValue);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    onFormSubmit(formData);
+
+    // Generate the UUID and add it to the formData
+    const gedcom_id = uuidv4();  
+
+    onFormSubmit({
+      ...formData,
+      gedcom_id
+    });
   };
 
   return (
@@ -42,14 +62,14 @@ export default function PersonForm({ onFormSubmit }) {
         />
       </div>
       <div className="sex-container">
-        <FormInput 
-          label="Sex" 
-          name="sex"  // Added name attribute for radio group
-          type="radio" 
-          options={["Male", "Female", "Unknown"]} 
-          defaultValue={formData.sex}  // Provide current selected value
-          onChange={(e) => handleInputChange('sex', e.target.value)}
-        />
+      <FormInput 
+        label="Sex" 
+        name="sex"
+        type="radio" 
+        options={["Male", "Female", "Unknown"]} 
+        defaultValue={formData.sex} 
+        onChange={(e) => handleSexChange(e.target.value)}
+      />
       </div>
       <div className="status-container">
         <FormInput 
@@ -92,4 +112,4 @@ export default function PersonForm({ onFormSubmit }) {
       </div>
     </form>
   );
-}
+};
