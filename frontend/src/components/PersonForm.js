@@ -39,11 +39,11 @@ export default function PersonForm({ onFormSubmit }) {
     e.preventDefault();
 
     // Generate the UUID and add it to the formData
-    const gedcom_id = uuidv4();  
+    const person_id = uuidv4();  
 
     onFormSubmit({
       ...formData,
-      gedcom_id
+      person_id
     });
   };
 

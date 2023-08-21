@@ -58,7 +58,6 @@ export default function PersonModal({isOpen, onRequestClose}) {
       <PersonForm onFormSubmit={handleFormSubmit} />
       <div className="modal-buttons">
         <button onClick={onRequestClose}>Cancel</button>
-        {/* The actual submission now happens within the PersonForm, so no need for a separate submit button here. */}
       </div>
     </Modal>
   );
