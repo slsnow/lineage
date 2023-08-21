@@ -39,7 +39,7 @@ sudo su - postgres -c "psql -c \"GRANT ALL PRIVILEGES ON DATABASE $DB_NAME TO $D
 # Create the people table
 sudo su - postgres -c "PGPASSWORD=$DB_PASS psql -U $DB_USER -d $DB_NAME -c 'CREATE TABLE people (
     id SERIAL PRIMARY KEY,
-    gedcom_id VARCHAR(20) UNIQUE NOT NULL,
+    person_id VARCHAR(36) UNIQUE NOT NULL,
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
     name_suffix VARCHAR(20),

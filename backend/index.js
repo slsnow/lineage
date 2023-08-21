@@ -24,7 +24,7 @@ app.post('/api/addPerson', async (req, res) => {
 
         // Insert person into people table
         const response = await pool.query(
-            "INSERT INTO people (person_id, first_name, last_name, gender, is_living) VALUES ($1, $2, $3, $4) RETURNING id",
+            "INSERT INTO people (person_id, first_name, last_name, gender, is_living) VALUES ($1, $2, $3, $4, $5) RETURNING id",
             [person_id, firstNames, lastNames, sex, status === 'Living']
         );
 
